@@ -1,4 +1,4 @@
-package com.example.kafkademo;
+package com.example.kafkademo.prodconsumer;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

@@ -1,4 +1,4 @@
-package com.example.kafkademo.config;
+package com.example.kafkademo.prodconsumer.config;
 
 import java.util.HashMap;
 import java.util.Map;

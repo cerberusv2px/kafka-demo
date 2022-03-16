@@ -1,4 +1,4 @@
-package com.example.kafkademo;
+package com.example.kafkademo.prodconsumer;
 
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
