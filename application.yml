@@ -3,9 +3,6 @@ spring:
     url: jdbc:postgresql://localhost:5454/orderdb
     username: user
     password: root
-  liquibase:
-    enabled: true
-    change-log: classpath:/changelog/changelog-master.xml
   jpa:
     show-sql: true
     properties:

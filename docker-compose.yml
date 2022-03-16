@@ -1,0 +1,23 @@
+version: "3.7"
+services:
+  postgres-1:
+    container_name: source_db
+    image: debezium/postgres:13
+    ports:
+      - 5454:5432
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=orderdb
+      - PGPASSWORD=postgrespw
+
+  postgres-2:
+    container_name: target_db
+    image: debezium/postgres:13
+    ports:
+      - 5455:5432
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=orderdb
+      - PGPASSWORD=postgrespw
