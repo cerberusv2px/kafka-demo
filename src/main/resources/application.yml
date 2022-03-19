@@ -1,10 +1,10 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5454/orderdb
+    url: jdbc:postgresql://localhost:5455/orderdb
     username: user
     password: root
   liquibase:
-    enabled: true
+    enabled: false
     change-log: classpath:/changelog/changelog-master.xml
   jpa:
     show-sql: true

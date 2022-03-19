@@ -1,5 +1,8 @@
 package com.example.debeziumdemo.config;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 
@@ -24,12 +27,15 @@ public class DebeziumConnector {
     private String sourceDbName;
 
     @Bean
-    public Configuration ordersConnector() {
-        return Configuration.create()
+    public Configuration ordersConnector() throws IOException {
+
+        File offsetStorageTempFile = File.createTempFile("offsets_", ".dat");
+        File dbHistoryTempFile = File.createTempFile("dbhistory_", ".dat");
+        return io.debezium.config.Configuration.create()
             .with("name", "order-connector")
             .with("connector.class", "io.debezium.connector.postgresql.PostgresConnector")
             .with("offset.storage", "org.apache.kafka.connect.storage.FileOffsetBackingStore")
-            .with("offset.storage.file.filename", "/tmp/offsets.dat")
+            .with("offset.storage.file.filename", offsetStorageTempFile.getAbsolutePath())
             .with("offset.flush.interval.ms", "60000")
             .with("database.hostname", sourceDbHost)
             .with("database.port", sourceDbPort)
@@ -38,10 +44,12 @@ public class DebeziumConnector {
             .with("database.dbname", sourceDbName)
             .with("database.include.list", sourceDbName)
             .with("include.schema.changes", "false")
-//            .with("database.server.id", "10181")
-//            .with("database.server.name", "source-postgres-db-server")
+            .with("database.allowPublicKeyRetrieval", "true")
+            .with("database.server.id", "10181")
+            .with("database.server.name", "source-postgres-db-server")
+            .with("table.whitelist", "public.orders")
             .with("database.history", "io.debezium.relational.history.FileDatabaseHistory")
-            .with("database.history.file.filename", "/tmp/dbhistory.dat")
+            .with("database.history.file.filename", dbHistoryTempFile.getAbsolutePath())
             .build();
     }
 

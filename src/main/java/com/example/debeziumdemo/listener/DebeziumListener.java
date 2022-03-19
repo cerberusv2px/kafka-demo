@@ -48,6 +48,7 @@ public class DebeziumListener {
 
     private void handleChangeEvent(RecordChangeEvent<SourceRecord> sourceRecordRecordChangeEvent) {
         SourceRecord sourceRecord = sourceRecordRecordChangeEvent.record();
+
         log.info("Key = '" + sourceRecord.key() + "' value = '" + sourceRecord.value() + "'");
 
         Struct sourceRecordChangeValue = (Struct) sourceRecord.value();
@@ -57,7 +58,8 @@ public class DebeziumListener {
                 (String) sourceRecordChangeValue.get(OPERATION));
 
             if (operation != Operation.READ) {
-                String record = operation == Operation.DELETE ? BEFORE : AFTER;
+                String record = operation == Operation.DELETE ? BEFORE
+                    : AFTER; // Handling Update & Insert operations.
 
                 Struct struct = (Struct) sourceRecordChangeValue.get(record);
                 Map<String, Object> payload = struct.schema().fields().stream()
@@ -65,9 +67,11 @@ public class DebeziumListener {
                     .filter(fieldName -> struct.get(fieldName) != null)
                     .map(fieldName -> Pair.of(fieldName, struct.get(fieldName)))
                     .collect(toMap(Pair::getKey, Pair::getValue));
+
+                this.orderService.replicateData(payload, operation);
+                log.info("Updated Data: {} with Operation: {}", payload, operation.name());
             }
         }
-
     }
 
     @PostConstruct
