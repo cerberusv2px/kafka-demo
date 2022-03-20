@@ -1,4 +1,4 @@
-package com.example.debeziumdemo.domain;
+package com.example.debeziumdemo.config.domain;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

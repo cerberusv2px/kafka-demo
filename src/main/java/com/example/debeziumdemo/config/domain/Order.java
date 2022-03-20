@@ -1,4 +1,4 @@
-package com.example.debeziumdemo.domain;
+package com.example.debeziumdemo.config.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -8,7 +8,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity
+@Entity(name = "orders")
 public class Order {
     @Id
     private Long id;

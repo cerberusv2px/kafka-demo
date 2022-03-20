@@ -42,7 +42,7 @@ public class DebeziumConnector {
             .with("database.user", sourceDbUser)
             .with("database.password", sourceDbPassword)
             .with("database.dbname", sourceDbName)
-            .with("database.include.list", sourceDbName)
+            //.with("database.include.list", sourceDbName)
             .with("include.schema.changes", "false")
             .with("database.allowPublicKeyRetrieval", "true")
             .with("database.server.id", "10181")
