@@ -1,4 +1,4 @@
-package com.example.debeziumdemo;
+package com.example.kafkastreamdemo;
 
 import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
@@ -9,20 +9,13 @@ import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.errors.LogAndContinueExceptionHandler;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.example.kafkastreamdemo.OrderStream;
-
-@SpringBootApplication
-public class DebeziumApplication {
+public class KafkaStreamDemoApplication {
 
     private final static String BOOTSTRAP_SERVERS = "localhost:9092";
     private final static String APPLICATION_ID = "evolve-stream";
 
     public static void main(String[] args) {
-        SpringApplication.run(DebeziumApplication.class, args);
-
         final Properties props = makeProps();
         final Topology topology = createTopology(props);
         final KafkaStreams streams = new KafkaStreams(topology, props);

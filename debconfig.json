@@ -1,0 +1,24 @@
+{
+  "name": "order-connector",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "plugin.name": "pgoutput",
+    "database.hostname": "source_db",
+    "database.port": "5432",
+    "database.user": "user",
+    "database.password": "root",
+    "database.dbname": "orderdb",
+    "database.server.name": "evolve",
+    "table.include.list": "public.orders",
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter.schemas.enable": "false",
+    "value.converter.schemas.enable": "false",
+    "snapshot.mode": "always",
+    "database.history.kafka.bootstrap.servers":"kafka:9092",
+    "database.history.kafka.topic": "evolve.orderdb",
+    "slot.name" : "1",
+    "offset.flush.timeout.ms": "30000",
+    "producer.buffer.memory": "40"
+  }
+}

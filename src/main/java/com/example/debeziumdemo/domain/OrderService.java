@@ -1,4 +1,4 @@
-package com.example.debeziumdemo.config.domain;
+package com.example.debeziumdemo.domain;
 
 import java.util.Map;
 

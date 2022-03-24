@@ -32,11 +32,11 @@ public class DebeziumConnector {
         File offsetStorageTempFile = File.createTempFile("offsets_", ".dat");
         File dbHistoryTempFile = File.createTempFile("dbhistory_", ".dat");
         return io.debezium.config.Configuration.create()
-            .with("name", "order-connector")
+            .with("name", "order-connector2")
             .with("connector.class", "io.debezium.connector.postgresql.PostgresConnector")
             .with("offset.storage", "org.apache.kafka.connect.storage.FileOffsetBackingStore")
             .with("offset.storage.file.filename", offsetStorageTempFile.getAbsolutePath())
-            .with("offset.flush.interval.ms", "60000")
+            .with("offset.flush.interval.ms", "10000")
             .with("database.hostname", sourceDbHost)
             .with("database.port", sourceDbPort)
             .with("database.user", sourceDbUser)
@@ -46,10 +46,12 @@ public class DebeziumConnector {
             .with("include.schema.changes", "false")
             .with("database.allowPublicKeyRetrieval", "true")
             .with("database.server.id", "10181")
-            .with("database.server.name", "source-postgres-db-server")
-            .with("table.whitelist", "public.orders")
+            .with("database.server.name", "evolve1")
+            .with("database.history.kafka.bootstrap.servers", "kafka:9092")
+            .with("database.history.kafka.topic", "evolve.orderdb")
             .with("database.history", "io.debezium.relational.history.FileDatabaseHistory")
             .with("database.history.file.filename", dbHistoryTempFile.getAbsolutePath())
+            .with("slot.name", "2")
             .build();
     }
 
