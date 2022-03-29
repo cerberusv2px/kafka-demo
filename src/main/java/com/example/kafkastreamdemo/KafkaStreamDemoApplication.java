@@ -55,7 +55,8 @@ public class KafkaStreamDemoApplication {
 
     private static Topology createTopology(Properties props) {
         StreamsBuilder builder = new StreamsBuilder();
-        OrderStream.build(builder);
+        //OrderStream.build(builder);
+        OrderUserStream.build(builder);
         final Topology topology = builder.build();
         System.out.println(topology.describe());
         return topology;

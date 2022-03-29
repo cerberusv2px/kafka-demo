@@ -19,7 +19,7 @@ import org.apache.kafka.connect.source.SourceRecord;
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.stereotype.Component;
 
-import com.example.debeziumdemo.domain.OrderService;
+import com.example.debeziumdemo.domain.order.OrderService;
 import io.debezium.config.Configuration;
 import io.debezium.data.Envelope.Operation;
 import io.debezium.embedded.Connect;

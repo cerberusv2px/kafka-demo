@@ -1,5 +1,5 @@
 {
-  "name": "order-connector",
+  "name": "order-users-connector",
   "config": {
     "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
     "plugin.name": "pgoutput",
@@ -9,7 +9,7 @@
     "database.password": "root",
     "database.dbname": "orderdb",
     "database.server.name": "evolve",
-    "table.include.list": "public.orders",
+    "table.include.list": "public.orders, public.users",
     "key.converter": "org.apache.kafka.connect.json.JsonConverter",
     "value.converter": "org.apache.kafka.connect.json.JsonConverter",
     "key.converter.schemas.enable": "false",

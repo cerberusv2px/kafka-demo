@@ -1,4 +1,4 @@
-package com.example.debeziumdemo.domain;
+package com.example.debeziumdemo.domain.order;
 
 import java.util.Map;
 
@@ -21,7 +21,7 @@ public class OrderService {
         final Order order = mapper.convertValue(orders, Order.class);
 
         if(Operation.DELETE == operation) {
-            orderRepository.deleteById(order.getId());
+            orderRepository.deleteById(Long.valueOf(order.getId()));
         } else {
             orderRepository.save(order);
         }

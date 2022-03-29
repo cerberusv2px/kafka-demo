@@ -8,7 +8,7 @@ import org.apache.kafka.streams.kstream.Consumed;
 import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.kstream.Produced;
 
-import com.example.debeziumdemo.domain.Order;
+import com.example.debeziumdemo.domain.order.Order;
 
 public class OrderStream {
     private final static String TOPIC = "evolve.public.orders";

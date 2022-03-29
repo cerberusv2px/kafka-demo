@@ -7,3 +7,5 @@ https://medium.com/analytics-vidhya/how-to-build-your-first-real-time-streaming-
 https://quarkus.io/guides/kafka-streams
 
 https://debezium.io/blog/2018/03/08/creating-ddd-aggregates-with-debezium-and-kafka-streams/
+
+https://medium.com/@adrian3ka/debezium-and-kstreams-to-handle-data-aggregation-a9c868a44518

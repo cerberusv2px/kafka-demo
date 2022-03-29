@@ -1,4 +1,4 @@
-package com.example.debeziumdemo.domain;
+package com.example.debeziumdemo.domain.order;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,7 +13,7 @@ import lombok.Setter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Order {
     @Id
-    private Long id;
+    private String id;
     private String itemname;
     private String status;
 }
